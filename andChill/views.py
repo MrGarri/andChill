@@ -35,11 +35,10 @@ def login(request):
 
 @login_required
 def search(request):
-    searchQuery = request.GET.get('search', '')
-    movies = Movie.objects.filter(name__contains=searchQuery)
+    search_query = request.GET.get('search', '')
+    movies = Movie.objects.filter(name__contains=search_query)
     template = loader.get_template("search/search.html")
-    return HttpResponse(template.render({'movies': movies, 'search': searchQuery}, request))
-
+    return HttpResponse(template.render({'movies': movies, 'search': search_query}, request))
 
 
 @login_required
