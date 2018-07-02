@@ -8,7 +8,11 @@
             </div>
             <div class="col-md-8 col-lg-6 col-sm-12">
                 <h1>{{ queried_movie.name }}</h1>
-                <h2>Year</h2>
+                <h2>{{ queried_movie.year }}</h2>
+                {{ queried_movie.director }}
+                {{ queried_movie.actors }}
+                {{ queried_movie.description }}
+                {{ queried_movie.rating }}
             </div>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#video"><i class="glyphicon glyphicon-play"></i>
                 Watch movie

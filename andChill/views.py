@@ -36,7 +36,12 @@ def watch(request, movie):
     queried_movie = Movie.objects.get(name=movie)
 
     movie_info = find_movie(queried_movie.name)
-    print(movie_info.text)
+
+    for key, value in movie_info.items():
+        if not queried_movie.__getattribute__(key):
+            queried_movie.__setattr__(key, value)
+
+    queried_movie.save()
 
     template = loader.get_template("watch/watch.html")
     return HttpResponse(template.render({'queried_movie': queried_movie}, request))
