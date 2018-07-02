@@ -1,32 +1,45 @@
 {% extends "base.html" %}
 {% block title %}andChill - Search{% endblock %}
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-lg-6 col-sm-12">
-                <img src="{{ queried_movie.picture }}">
-            </div>
-            <div class="col-md-8 col-lg-6 col-sm-12">
-                <h1>{{ queried_movie.name }}</h1>
-                <h2>{{ queried_movie.year }}</h2>
-                {{ queried_movie.director }}
-                {{ queried_movie.actors }}
-                {{ queried_movie.description }}
-                {{ queried_movie.rating }}
-            </div>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#video"><i class="glyphicon glyphicon-play"></i>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-lg-6 col-sm-12">
+            <img src="{{ queried_movie.picture }}">
+        </div>
+        <div class="col-md-8 col-lg-6 col-sm-12">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <span class="badge"><i class="glyphicon glyphicon-star"></i>{{ queried_movie.rating }}</span>
+                    <h1>{{ queried_movie.name }} ({{ queried_movie.year }})</h1>
+                </li>
+                <li class="list-group-item">
+                    <b>Director:</b> {{ queried_movie.director }}
+                </li>
+                <li class="list-group-item">
+                    <b>Stars:</b> {{ queried_movie.actors }}
+                </li>
+                <li class="list-group-item">
+                    {{ queried_movie.description }}
+                </li>
+            </ul>
+
+            <br>
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#video"><i class="glyphicon glyphicon-play"></i>
                 Watch movie
             </button>
         </div>
+
     </div>
-    <div class="modal fade bs-example-modal-lg" id="video" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content embed-responsive embed-responsive-16by9 col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <iframe allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen"
-                        msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen"
-                        webkitallowfullscreen="webkitallowfullscreen" class="embed-responsive-item"
-                        src="{{ queried_movie.video }}"></iframe>
-            </div>
+</div>
+<div class="modal fade bs-example-modal-lg" id="video" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content embed-responsive embed-responsive-16by9 col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <iframe allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen"
+                    msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen"
+                    webkitallowfullscreen="webkitallowfullscreen" class="embed-responsive-item"
+                    src="{{ queried_movie.video }}"></iframe>
         </div>
     </div>
+</div>
 {% endblock %}

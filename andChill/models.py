@@ -10,3 +10,4 @@ class Movie(models.Model):
     actors = models.CharField(max_length=1000, blank=True)
     picture = models.CharField(max_length=500, blank=True)
     rating = models.CharField(max_length=20, blank=True)
+    downloaded = models.BooleanField(default=False)
