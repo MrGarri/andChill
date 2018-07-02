@@ -1,7 +1,12 @@
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login as user_login
 from django.shortcuts import render, redirect
 from django.template import loader
+
+from andChill.models import Movie
+
+from andChill.api import find_movie
 
 
 def index(request):
@@ -24,3 +29,14 @@ def login(request):
 
 def search(request):
     return HttpResponse("Mu bien")
+
+
+@login_required
+def watch(request, movie):
+    queried_movie = Movie.objects.get(name=movie)
+
+    movie_info = find_movie(queried_movie.name)
+    print(movie_info.text)
+
+    template = loader.get_template("watch/watch.html")
+    return HttpResponse(template.render({'queried_movie': queried_movie}, request))

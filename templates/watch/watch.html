@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}andChill - Search{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-lg-6 col-sm-12">
+                <img src="{{ queried_movie.picture }}">
+            </div>
+            <div class="col-md-8 col-lg-6 col-sm-12">
+                <h1>{{ queried_movie.name }}</h1>
+                <h2>Year</h2>
+            </div>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#video"><i class="glyphicon glyphicon-play"></i>
+                Watch movie
+            </button>
+        </div>
+    </div>
+    <div class="modal fade bs-example-modal-lg" id="video" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content embed-responsive embed-responsive-16by9 col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <iframe allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen"
+                        msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen"
+                        webkitallowfullscreen="webkitallowfullscreen" class="embed-responsive-item"
+                        src="{{ queried_movie.video }}"></iframe>
+            </div>
+        </div>
+    </div>
+{% endblock %}

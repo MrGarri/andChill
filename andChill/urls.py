@@ -22,5 +22,6 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     path(r'login/', views.login, name='login'),
+    path('watch/<str:movie>', views.watch, name='watch'),
     url(r'^admin/', admin.site.urls),
 ]
