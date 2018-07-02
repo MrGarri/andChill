@@ -10,10 +10,16 @@ from andChill.api import find_movie
 
 
 def index(request):
-    return HttpResponse("Pelis y series aqui.")
+    if request.user.is_authenticated:
+        return redirect(search)
+    else:
+        return redirect(login)
 
 
 def login(request):
+    if request.user.is_authenticated:
+        return redirect(search)
+
     username = request.POST.get("username", None)
     password = request.POST.get("password", None)
 
@@ -21,14 +27,18 @@ def login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             user_login(request, user)
-            return redirect(index)
+            return redirect(search)
 
     template = loader.get_template("login/login.html")
     return HttpResponse(template.render({'username': username}, request))
 
 
+@login_required
 def search(request):
-    return HttpResponse("Mu bien")
+    search_query = request.GET.get('search', '')
+    movies = Movie.objects.filter(name__contains=search_query)
+    template = loader.get_template("search/search.html")
+    return HttpResponse(template.render({'movies': movies, 'search': search_query}, request))
 
 
 @login_required
