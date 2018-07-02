@@ -1,5 +1,31 @@
 {% extends "base.html" %}
-{% block title %}andChill - Search{% endblock %}
+{% block title %}andChill - {{ concept|default:'Search' }}{% endblock %}
 {% block content %}
+<br>
+<form method="GET">
+  <div class="row">
+    <div class="col-xs-6 col-md-4 col-xs-offset-3 col-md-offset-4">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search" name="search" value="{{ search }}"/>
+        <div class="input-group-btn">
+          <button class="btn btn-primary" type="submit">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<br>
+{% for movie in movies %}
+<div class="card col-md-3">
+    {% load static %}
+    <div class="panel panel-default">
+        <div class="panel-heading"><h4>{{ movie.name }}</h4></div>
+        <img class="card-img-top" src="{{ movie.picture|default:'' }}{% if not movie.picture %}{% static "img/default.png" %}{% endif %}" alt="{{ movie.name }}">
+        <div class="panel-footer"><a href="#" class="btn btn-primary">Details</a></div>
+    </div>
+</div>
+{% endfor %}
 
 {% endblock %}
