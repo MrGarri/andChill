@@ -1,36 +1,40 @@
 {% extends "base.html" %}
-{% block title %}andChill - Search{% endblock %}
+{% block title %}andChill - {{ queried_movie.name }}{% endblock %}
+{% block background %}
+<div class="background">
+    <img src="{{ queried_movie.picture }}">
+</div>
+{% endblock %}
 {% block content %}
 <br>
-<div class="container">
-    <div class="row">
-        <div class="col-md-4 col-lg-6 col-sm-12">
-            <img src="{{ queried_movie.picture }}">
-        </div>
-        <div class="col-md-8 col-lg-6 col-sm-12">
-            <ul class="list-group">
-                <li class="list-group-item">
-                    <span class="badge"><i class="glyphicon glyphicon-star"></i>{{ queried_movie.rating }}</span>
-                    <h1>{{ queried_movie.name }} ({{ queried_movie.year }})</h1>
-                </li>
-                <li class="list-group-item">
-                    <b>Director:</b> {{ queried_movie.director }}
-                </li>
-                <li class="list-group-item">
-                    <b>Stars:</b> {{ queried_movie.actors }}
-                </li>
-                <li class="list-group-item">
-                    {{ queried_movie.description }}
-                </li>
-            </ul>
-
-            <br>
-            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#video"><i class="glyphicon glyphicon-play"></i>
-                Watch movie
-            </button>
-        </div>
-
+<div class="row">
+    <div class="col-md-4 col-lg-6 col-sm-12">
+        <img class="shade full-width" src="{{ queried_movie.picture }}">
     </div>
+    <div class="v-align col-md-8 col-lg-6 col-sm-12">
+        <ul class="shade list-group">
+            <li class="list-group-item">
+                <span class="badge"><i class="glyphicon glyphicon-star"></i>{{ queried_movie.rating }}</span>
+                <h1>{{ queried_movie.name }} ({{ queried_movie.year }})</h1>
+            </li>
+            <li class="list-group-item">
+                <b>Director:</b> {{ queried_movie.director }}
+            </li>
+            <li class="list-group-item">
+                <b>Stars:</b> {{ queried_movie.actors }}
+            </li>
+            <li class="list-group-item">
+                {{ queried_movie.description }}
+            </li>
+        </ul>
+
+        <br>
+        <button type="button" class="btn btn-block btn-lg btn-success" data-toggle="modal" data-target="#video"><i class="glyphicon glyphicon-play"></i>
+            Watch movie
+        </button>
+        <br>
+    </div>
+
 </div>
 <div class="modal fade bs-example-modal-lg" id="video" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-lg" role="document">
